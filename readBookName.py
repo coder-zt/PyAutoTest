@@ -1,3 +1,5 @@
+import os
+
 class BookNameContainer:
     
     def __init__(self):
@@ -5,7 +7,7 @@ class BookNameContainer:
         self.currentIndex = self.readBookNames()
 
     def readBookNames(self):
-        with open("book_items.csv", encoding="utf-8") as f:
+        with open(os.path.dirname(__file__) + "\\book_items.csv", encoding="utf-8") as f:
             lines = f.readlines()
             for line in lines:
                self.mBookContainer.append(line.strip())
