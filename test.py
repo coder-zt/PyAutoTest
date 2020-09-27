@@ -4,24 +4,30 @@ from readBookName import BookNameContainer
 
 
 def onBookDetailActivity():
-    try:
-        d(text="开始阅读").click()
-    except:
-        d(text="继续阅读").click()
+    time.sleep(2)
+    d(resourceId="com.tataera.edushu:id/readBtn").click()
     time.sleep(10)
-    print("开始切换章节")
+    print("开始切换章节--->")
     while True:
         # 点击下测试
-        try:
-            d(resourceId="com.tataera.edushu:id/tv_test_next").click()
+        print("测试切换章节", end="")
+        try:   
+            if d(resourceId="com.tataera.edushu:id/tv_test_next").get_text() == "测试":
+                print("点击测试按钮")
+                d(resourceId="com.tataera.edushu:id/tv_test_next").click()
+            else:
+                print("测试结束")
+                break
         except:
+            print("异常，进入等待")
             time.sleep(1)
-        time.sleep(1)
+        time.sleep(5)
     d.press("back")
+    time.sleep(10)
     d.press("back")
 
 
-d =  u2.connect("192.168.43.98")
+d =  u2.connect("192.168.0.113")
 d.settings['wait_timeout'] = 2.0 
 d.click_post_delay = 1.5
 
@@ -37,4 +43,5 @@ while(bookName != "null"):
         if tvTitle.get_text() == bookName:
             tvTitle.click()
             onBookDetailActivity()
+    # 判断是不是回到了搜索页面
     bookName = rbn.getNextBookName()

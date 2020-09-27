@@ -16,7 +16,7 @@ class BookNameContainer:
     def getNextBookName(self):
         if(len(self.mBookContainer) - 1 > self.currentIndex):
             bookName = self.mBookContainer[self.currentIndex]
-            if self.currentIndex > 1:
+            if self.currentIndex >= 1:
                 self.saveHnadledBookIndex(self.currentIndex)
             self.currentIndex =  self.currentIndex + 1
             return bookName
